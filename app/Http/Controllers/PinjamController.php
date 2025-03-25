@@ -88,14 +88,15 @@ class PinjamController extends Controller
             return redirect()->route('data_pinjam.index')->with('info', 'Buku sudah dikembalikan!');
         }
 
-
         $tglpengembalian = Carbon::now();
+      
+    
         $duedate = Carbon::parse($pinjam->tgljatuhtempo);
 
         $hitungjatuhtempo = $duedate->diffInDays($tglpengembalian, false);
+      
 
-
-        if ($hitungjatuhtempo == 0){
+        if ($hitungjatuhtempo < 0 or $hitungjatuhtempo == 0){
             $denda =  0;
         }else{
 
