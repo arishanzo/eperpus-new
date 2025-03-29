@@ -41,7 +41,7 @@ AFTER DELETE ON pinjam_bukus
 FOR EACH ROW
 BEGIN
 UPDATE dt_bukus 
-SET jumlahsalinan = jumlahsalinan + jumlah
+SET jumlahsalinan = jumlahsalinan + old.jumlah
 WHERE id_buku = OLD.id_buku;
 END;
 ');
